@@ -1,0 +1,15 @@
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local args = {
+    [1] = true,
+}
+
+local localPlayer = Players.LocalPlayer
+
+for _, player in pairs(Players:GetPlayers()) do
+    if player ~= localPlayer and player.Character then
+        args[2] = player.Character
+        ReplicatedStorage.Events.GripEvent:FireServer(unpack(args))
+    end
+end
